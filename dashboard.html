@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="dashboard-page">
+
+<nav tpl-include="menu.html"></nav>
+
+<main>
+    <div id="dash-layout">
+        <div class="content-card">
+            <div class="content-card-header">Employees</div>
+            <div class="content-card-content">
+
+                <tpl tpl-foreach="$employees as $employee">
+
+                    <div class="employee-item">
+                        <tpl tpl-if="$employee->getPictureName() !== ' '">
+                            <img src="{{ $employee->getPictureName() }}" data-employee-id="{{ $employee->getId() }}" alt="profile picture">
+                        </tpl>
+                        <span class="name" data-employee-id="{{ $employee->getId() }}">{{ $employee->getFirstName() }} {{ $employee->getLastName() }}</span>
+                        <span class="count" id="employee-task-count-{{ $employee->getId() }}">{{ $employee->getTaskCount() }}</span>
+                        <tpl tpl-if="$employee->getPosition() !== ' '">
+                            <br><span class="position">{{ $employee->getPosition() }}</span>
+                        </tpl>
+                    </div>
+                </tpl>
+
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-card-header">Tasks</div>
+            <div class="content-card-content">
+                <tpl tpl-foreach="$tasks as $task">
+                    <div class="task" draggable="true">
+                        <div class="title" data-task-id="{{ $task->getId() }}">{{ $task->getDescription() }}</div>
+                        <br>
+                        <div id="task-state-{{ $task->getId() }}"
+                             class="status {{ $task->getStatus() === 'open' ? 'open' : ($task->getStatus() === 'pending' ? 'pending' : 'closed') }}">
+                            {{ $task->getStatus() === 'open' ? 'Open' : ($task->getStatus() === 'pending' ? 'Pending' : 'Closed') }}
+                        </div>
+
+                        <tpl tpl-if="$task->getEstimate() ">
+                            <div class="dot-container" data-estimate="{{ $task->getEstimate() }}">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </tpl>
+                        <tpl tpl-if="!$task->getEstimate()">
+                            <div class="dot-container" data-estimate="0">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </tpl>
+
+                    </div>
+                </tpl>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<div tpl-include="footer.html"></div>
+
+</body>
+</html>

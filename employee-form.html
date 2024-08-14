@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add employee</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="employee-form-page">
+<nav tpl-include="menu.html"></nav>
+
+<div id="root">
+
+    <main>
+        <div class="content-card">
+            <div class="content-card-header">Add Employee</div>
+            <div class="content-card-content">
+
+                <tpl tpl-if="$errors">
+                    <div id="error-block">
+                        <ul>
+                            <tpl tpl-foreach="$errors as $error">
+                                <li>{{ $error }}</li>
+                            </tpl>
+                        </ul>
+                    </div>
+                </tpl>
+
+                <form id="input-form" method="post" action="employee-form.php" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="id" value="{{ $formData['id'] ?? ($employee ? $employee->getId() : '') }}">
+
+                    <div class="label-cell"><label for="firstName">First name:</label></div>
+                    <div class="input-cell"><input name="firstName"
+                                                   value="{{ $formData['firstName'] ?? ($employee ? $employee->getFirstName() : '') }}"
+                                                   id="firstName"
+                                                   type="text"></div>
+
+                    <div class="label-cell"><label for="lastName">Last name:</label></div>
+                    <div class="input-cell"><input name="lastName"
+                                                   value="{{ $formData['lastName'] ?? ($employee ? $employee->getLastName() : '') }}"
+                                                   id="lastName"
+                                                   type="text"></div>
+
+                    <div class="label-cell"><label for="position">Position:</label></div>
+                    <div class="input-cell"><input name="position"
+                                                   value="{{ $formData['position'] ?? ($employee ? $employee->getPosition() : '') }}"
+                                                   id="position"
+                                                   type="text"></div>
+
+                    <div class="label-cell"><label for="picture">Picture:</label></div>
+                    <div class="input-cell"><input name="picture"
+                                                   id="picture"
+                                                   type="file"></div>
+
+                    <div class="label-cell"></div>
+                    <div class="input-cell button-cell">
+                        <br>
+                        <tpl tpl-if="$employee">
+                            <input type="hidden" name="action" value="delete">
+                            <button type="submit" class="danger" name="deleteButton">Delete</button>
+                            <input type="hidden" name="action" value="update">
+                            <button type="submit" class="main" name="submitButton">Edit</button>
+                        </tpl>
+
+                        <tpl tpl-if="!$employee">
+                            <input type="hidden" name="action" value="save">
+                            <button type="submit" class="main" name="submitButton">Save</button>
+                        </tpl>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div tpl-include="footer.html"></div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

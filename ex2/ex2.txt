@@ -1,0 +1,36 @@
+5. Kirjutage käsurea programm, millelt saab küsida infot varasemate aastate
+   temperatuuride kohta.
+
+   Varasemas harjutustunnis kirjutasite funktsioonid getDaysUnderTemp(),
+   getDaysUnderTempDictionary() ja dictToString(). Nüüd peaksite need üheks 
+   programmiks kokku panema.
+
+   All on mõned programmi kasutamise näided (rea alguses olev ">" märk tähistab 
+   seda, et järgnev tuleks kirjutada käsureale).
+   
+     > php temps.php --command days-under-temp --year 2021 --temp -5
+   
+   väljastab funktsiooni getDaysUnderTemp() tulemuse argumentidega 2021 ja -5.
+   
+     > php temps.php --command days-under-temp-dict --temp -5
+   
+   väljastab funktsiooni getDaysUnderTempDictionary() tulemuse argumentiga -5.
+   
+     > php temps.php --command avg-winter-temp --year 2021/2022
+     
+   väljastab argumendiga määratud aasta talve keskmise temperatuuri.
+   Talve keskmise temperatuuri all on mõeldud 2021 detsembri, 2022 jaanuari ja 
+   2022 veebruari keskmist temperatuuri.
+   
+   Varasemate harjutustundide koodi ei tohi duplitseerida. Koodile 
+   viitamiseks on konstruktsioon require_once('../ex1/ex7.php').
+   
+   Varasemas harjutustunnis viitasite andmete failile relatiivselt ja
+   kuna nüüd käivitate koodi teisest kohast, siis see viide pole enam õige.
+   
+   Php-s on konstant __DIR__, mis viitab sellele kataloogile, kus asub php fail, 
+   milles seda konstanti kasutatakse. Seega peaksite varasemas koodis 
+   data/temperatures.csv asemele kirjutama __DIR__ . '/data/temperatures.csv',
+   et mõlemast kohast koodi käivitamisel leitaks õige fail üles.
+   
+   Lahenduse kontrollimiseks on testid failist ex2c.php (repo icd0007tests).

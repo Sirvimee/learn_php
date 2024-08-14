@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="task-list-page">
+
+<tpl tpl-if="$message">
+    <div id='message-block'>
+        <tpl tpl-if="$message === 'success'">
+            Andmed salvestatud!
+        </tpl>
+
+        <tpl tpl-if="$message === 'deleted'">
+            Kustutamine õnnestus!
+        </tpl>
+    </div>
+</tpl>
+
+<nav tpl-include="menu.html"></nav>
+
+<main>
+    <div class="content-card-content">
+        <tpl tpl-foreach="$tasks as $task">
+            <div class="task">
+                <span class="link"><a id="task-edit-link-{{ $task->getId() }}" href="task-form.php?id={{ $task->getId() }}">Edit</a></span>
+                <div class="title" data-task-id="{{ $task->getId() }}">{{ $task->getDescription() }}</div>
+                <br>
+                <div id="task-state-{{ $task->getId() }}"
+                     class="status {{ $task->getStatus() === 'open' ? 'open' : ($task->getStatus() === 'pending' ? 'pending' : 'closed') }}">
+                    {{ $task->getStatus() === 'open' ? 'Open' : ($task->getStatus() === 'pending' ? 'Pending' : 'Closed') }}
+                </div>
+
+                <tpl tpl-if="$task->getEstimate()">
+                    <div class="dot-container" data-estimate="{{ $task->getEstimate() }}">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </tpl>
+                <tpl tpl-if="!$task->getEstimate()">
+                    <div class="dot-container" data-estimate="0">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </tpl>
+
+            </div>
+        </tpl>
+    </div>
+</main>
+
+<div tpl-include="footer.html"></div>
+
+</body>
+</html>

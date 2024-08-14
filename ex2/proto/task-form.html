@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+</head>
+<body id="task-form-page">
+
+<table align="center">
+    <tr>
+        <td>
+            <table border="0" width="650px">
+                <tr>
+                    <td><a href="index.html" id="dashboard-link">Dashboard</a> |
+                        <a href="employee-list.html" id="employee-list-link">Employees</a> |
+                        <a href="employee-form.html" id="employee-form-link">Add Employee</a> |
+                        <a href="task-list.html" id="task-list-link">Tasks</a> |
+                        <a href="" id="task-form-link">Add Task</a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <table border="0" width="100%">
+                            <tr>
+                                <td width="100%" style="background-color:DodgerBlue;">Add Task</td>
+                            </tr>
+
+                            <tr>
+                                <td width="100%"><br></td>
+                            </tr>
+
+                            <tr>
+                                <td width="35%">
+                                    <table border="0" width="100%">
+                                        <tr>
+                                            <td width="20%"></td>
+                                            <td align="right" valign="top" width="30%"><label for="description">Description:</label>
+                                            </td>
+                                            <td width="30%">
+                                                <textarea id="description" name="description" rows="2" cols="38"></textarea>
+                                            </td>
+                                            <td width="20%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%"></td>
+                                            <td align="right" width="30%">Estimate:</td>
+                                            <td><input type="radio" name="estimate" id="1" value="1" checked/>
+                                                <label for="1">1</label>
+                                                <input type="radio" name="estimate" id="2" value="2"/>
+                                                <label for="2">2</label>
+                                                <input type="radio" name="estimate" id="3" value="3"/>
+                                                <label for="3">3</label>
+                                                <input type="radio" name="estimate" id="4" value="4"/>
+                                                <label for="4">4</label>
+                                                <input type="radio" name="estimate" id="5" value="5"/>
+                                                <label for="5">5</label>
+                                            </td>
+                                            <td width="20%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%"></td>
+                                            <td align="right" width="30%"><label
+                                                    for="assigned">Assigned to:</label></td>
+                                            <td width="30%"><select id="assigned" name="assigned" style="width: 302px">
+                                                <option value="daisy">Daisy Smith</option>
+                                                <option value="james">James Adams</option>
+                                                <option value="mary">Mary Brown</option>
+                                            </select></td>
+                                            <td width="20%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%"></td>
+                                            <td align="right" width="30%"><label for="completed">Completed:</label>
+                                            </td>
+                                            <td width="30%"><input type="checkbox" id="completed" name="completed"></td>
+                                            <td width="20%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%"></td>
+                                            <td></td>
+                                            <td width="30%" align="right">
+                                                <button style="background-color:darkred; color: white; border: white;"
+                                                        type="submit">
+                                                    Delete
+                                                </button>
+                                                <button style="background-color:DodgerBlue; color: white; border: white;"
+                                                        type="submit">
+                                                    Save
+                                                </button>
+                                            </td>
+                                            <td width="20%"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td>icd0007 Sample Application</td>
+    </tr>
+</table>
+
+</body>
+</html>

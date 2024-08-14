@@ -1,0 +1,353 @@
+:root {
+    --color-light: #F6F4EB;
+    --color-darker: #91C8E4;
+    --color-dark: #749BC2;
+    --color-darkest: #4682A9;
+    --color-black: #1e3747;
+
+    --color-red: darkred;
+    --color-green: green;
+    --color-blue: dodgerblue;
+
+    --font-regular: Arimo, sans-serif;
+    --font-medium: Arimo-Medium, sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    font-family: var(--font-regular);
+    color: var(--color-dark);
+    max-width: 40rem;
+    background-color: var(--color-light);
+}
+
+#root {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: 3.5rem auto 4rem;
+}
+
+nav {
+    padding: 1rem .4rem .4rem .4rem;
+    font-family: var(--font-medium);
+    color: #555;
+}
+
+footer {
+    color: var(--color-dark);
+    font-family: var(--font-medium);
+    padding: .4rem;
+    border-top: 1px solid var(--color-darker);
+    margin-top: 1rem;
+}
+
+nav > a {
+    font-weight: normal;
+    text-decoration: none;
+    color: var(--color-darkest);
+}
+
+.content-card {
+    border: 1px solid var(--color-darker);
+    border-radius: .2rem;
+}
+
+.content-card-header {
+    padding: .4rem;
+    font-family: var(--font-medium);
+    color: var(--color-darkest);
+    border-bottom: 1px solid var(--color-darker);
+    background-color: var(--color-darker);
+    margin-bottom: 1rem;
+}
+
+.content-card-content {
+    padding: .4rem;
+}
+
+#dash-layout {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column-gap: .8rem;
+    grid-row-gap: .8rem;
+}
+
+#dash-layout .content-card:first-child {
+    width: 14rem;
+}
+
+#dash-layout .content-card:last-child {
+    flex-grow: 1;
+    min-width: 15rem;
+}
+
+#dash-layout .task .title > div {
+    max-width: 20rem;
+}
+
+#message-block, #error-block {
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: .25rem;
+
+    line-height: 1.7rem;
+
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#message-block {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+#error-block {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    text-align: center;
+}
+
+/* Add employee form */
+#input-form {
+    width: 28rem;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#input-form .input-cell {
+    width: 18rem;
+}
+
+#input-form .label-cell {
+    width: 8rem;
+    line-height: 1.9rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#input-form .input-cell {
+    line-height: 1.9rem;
+}
+
+input[type='text'], textarea, select {
+    width: 100%;
+    padding: 0.3rem;
+    border: 1px solid var(--color-darker);
+    background-color: white;
+    font-size: 0.8rem;
+    border-radius: .2rem;
+}
+
+input[type='submit'], .button, button {
+    padding: 0.3rem;
+    border-radius: .2rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    font-size: 1rem;
+}
+
+input[type='submit'].danger, .button.danger, button.danger {
+    background-color: var(--color-red);
+}
+
+input[type='submit'].main, .button.main, button.main {
+    background-color: var(--color-blue);
+}
+
+input[type='radio'] {
+    width: unset;
+}
+
+input[type='file']::file-selector-button {
+    height: 1.7rem;
+    background-color: white;
+    border-radius: .2rem;
+    border: 1px solid var(--color-darker);
+}
+
+.button-cell {
+    text-align: right;
+}
+
+/* Employee list */
+.employee-item, .task {
+    padding: 0.4rem 0.4rem 1rem 0.4rem;
+    border: 1px solid var(--color-darker);
+    border-radius: .2rem;
+
+    min-height: 5rem;
+    margin-bottom: .5rem;
+}
+
+.employee-item img {
+    height: 70px;
+    width: 70px;
+    float: left;
+    margin-right: 0.4rem;
+    border-radius: .2rem;
+}
+
+.employee-item .position {
+    color: var(--color-darker);
+}
+
+.employee-item .name {
+    color: var(--color-black);
+}
+
+.employee-item .count {
+    float: right;
+}
+
+.employee-item .link > a {
+    float: right;
+    color: var(--color-darkest);
+}
+
+.task .link > a {
+    float: right;
+    color: var(--color-darkest);
+}
+
+.task .dot {
+    border: 1px solid var(--color-darkest);
+    border-radius: .15rem;
+    width: .8rem;
+    height: .8rem;
+    display: inline-block;
+    margin-right: .2rem;
+}
+
+.task .filled {
+    background-color: var(--color-darker);
+}
+
+.dot-container {
+    display: flex;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    background-color: #ccc;
+}
+
+.dot:nth-child(-n + 5) {
+    background-color: #007bff;
+}
+
+.dot-container[data-estimate="1"] .dot:nth-child(n + 2),
+.dot-container[data-estimate="2"] .dot:nth-child(n + 3),
+.dot-container[data-estimate="3"] .dot:nth-child(n + 4),
+.dot-container[data-estimate="4"] .dot:nth-child(n + 5),
+.dot-container[data-estimate="5"] .dot:nth-child(n + 6) {
+    background-color: #007bff;
+}
+
+.dot-container[data-estimate="1"] .dot:nth-child(n + 2),
+.dot-container[data-estimate="2"] .dot:nth-child(n + 3),
+.dot-container[data-estimate="3"] .dot:nth-child(n + 4),
+.dot-container[data-estimate="4"] .dot:nth-child(n + 5) {
+    background-color: #ccc;
+}
+
+.task .title > div {
+    max-width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.task .status {
+    font-family: var(--font-medium);
+    float: right;
+    border-radius: .2rem;
+    padding: .1rem .2rem;
+    color: var(--color-light);
+}
+
+.task .open {
+    background-color: var(--color-blue);
+}
+
+.task .closed {
+    background-color: var(--color-green);
+}
+
+.task .pending {
+    background-color: var(--color-red);
+}
+
+/* Add task */
+#input-form {
+    width: 28rem;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#input-form .input-cell {
+    width: 18rem;
+}
+
+#input-form .label-cell {
+    width: 8rem;
+    line-height: 1.9rem;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+#input-form .input-cell {
+    line-height: 1.9rem;
+}
+
+input[type='text'], textarea, select {
+    width: 100%;
+    padding: 0.3rem;
+    border: 1px solid var(--color-darker);
+    background-color: white;
+    font-size: 0.8rem;
+    border-radius: .2rem;
+}
+
+input[type='submit'], .button, button {
+    padding: 0.3rem;
+    border-radius: .2rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    font-size: 1rem;
+}
+
+input[type='submit'].danger, .button.danger, button.danger {
+    background-color: var(--color-red);
+}
+
+input[type='submit'].main, .button.main, button.main {
+    background-color: var(--color-blue);
+}
+
+input[type='radio'] {
+    width: unset;
+}
+
+input[type='file']::file-selector-button {
+    height: 1.7rem;
+    background-color: white;
+    border-radius: .2rem;
+    border: 1px solid var(--color-darker);
+}
+
+.button-cell {
+    text-align: right;
+}

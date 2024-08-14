@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="task-form-page">
+<nav tpl-include="menu.html"></nav>
+
+<main>
+    <div class="content-card">
+        <div class="content-card-header">Add Task</div>
+        <div class="content-card-content">
+
+            <tpl tpl-if="$errors">
+                <div id="error-block">
+                    <ul>
+                        <tpl tpl-foreach="$errors as $error">
+                            <li>{{ $error }}</li>
+                        </tpl>
+                    </ul>
+                </div>
+            </tpl>
+
+            <form id="input-form" method="post" action="task-functions.php" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ $formData['id'] ?? ($task ? $task->getId() : '') }}">
+
+                <div class="label-cell"><label for="description">Description:</label></div>
+                <div class="input-cell">
+                    <textarea id="description" name="description">{{ $formData['description'] ?? ($task ? $task->getDescription() : '') }}</textarea>
+                </div>
+
+                <div class="label-cell">Estimate:</div>
+                <div class="input-cell">
+                    <tpl tpl-foreach="range(1, 5) as $estimate">
+                        <label for="estimate{{ $estimate }}">{{ $estimate }}</label>
+                        <tpl tpl-if="$task">
+                            <input type="radio"
+                                   id="estimate{{ $estimate }}"
+                                   name="estimate"
+                                   tpl-checked="$estimate === $task->getEstimate() "
+                                   value="{{ $estimate }}">
+                        </tpl>
+                        <tpl tpl-if="!$task">
+                        <input type="radio" id="estimate" name="estimate" value="{{ $estimate }}">
+                        </tpl>
+                    </tpl>
+                </div>
+
+                <div class="label-cell"><label for="employeeId"></label>Assigned to:</div>
+                <div class="input-cell">
+                    <select id="employeeId" name="employeeId">
+                        <option value=""></option>
+                        <tpl tpl-foreach="$employees as $employee">
+                            <tpl tpl-if="$task">
+                                <option value="{{ $employee->getId() }}"
+                                tpl-selected="$employee->getId() === $task->getAssignedTo()">{{ $employee->getFirstName() }} {{ $employee->getLastName() }}</option>
+                            </tpl>
+                            <tpl tpl-if="!$task">
+                                <option value="{{ $employee->getId() }}">{{ $employee->getFirstName() }} {{ $employee->getLastName() }}</option>
+                            </tpl>
+                        </tpl>
+                    </select>
+                </div>
+
+                <div class="label-cell">Completed</div>
+                <div class="input-cell">
+                    <input name="isCompleted"
+                           id="closed"
+                           value="closed"
+                           tpl-checked="$isCompletedChecked"
+                           type="checkbox" /></div>
+                <div class="input-cell button-cell">
+                    <br>
+                    <tpl tpl-if="$task">
+                        <input type="hidden" name="action" value="delete">
+                        <button type="submit" class="danger" name="deleteButton">Delete</button>
+                        <input type="hidden" name="action" value="update">
+                        <button type="submit" class="main" name="submitButton">Edit</button>
+                    </tpl>
+
+                    <tpl tpl-if="!$task">
+                        <input type="hidden" name="action" value="save">
+                        <button type="submit" class="main" name="submitButton">Save</button>
+                    </tpl>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</main>
+
+<div tpl-include="footer.html"></div>
+
+</body>
+</html>

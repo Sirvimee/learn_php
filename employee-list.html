@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="employee-list-page">
+
+<tpl tpl-if="$message">
+    <div id='message-block'>
+        <tpl tpl-if="$message === 'success'">
+            Andmed salvestatud!
+        </tpl>
+
+        <tpl tpl-if="$message === 'deleted'">
+            Kustutamine õnnestus!
+        </tpl>
+    </div>
+</tpl>
+
+<nav tpl-include="menu.html"></nav>
+
+<main>
+    <div class="content-card">
+        <div class="content-card-header">Employees</div>
+        <div class="content-card-content">
+
+            <tpl tpl-foreach="$employees as $employee">
+                <div class="employee-item">
+                    <tpl tpl-if="$employee->getPictureName() !== ' '">
+                        <img src="{{ $employee->getPictureName() }}" data-employee-id="{{ $employee->getId() }}" alt="profile picture">
+                    </tpl>
+                    <span class="name" data-employee-id="{{ $employee->getId() }}">{{ $employee->getFirstName() }} {{ $employee->getLastName() }}</span>
+                    <span class="link"><a id="employee-edit-link-{{ $employee->getId() }}" href="employee-form.php?id={{ $employee->getId() }}">Muuda</a></span>
+                    <tpl tpl-if="$employee->getPosition() !== ' '">
+                        <br><span class="position">{{ $employee->getPosition() }}</span>
+                    </tpl>
+                </div>
+            </tpl>
+
+        </div>
+    </div>
+</main>
+
+<div tpl-include="footer.html"></div>
+
+</body>
+</html>
